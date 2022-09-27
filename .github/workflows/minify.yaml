@@ -8,20 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository
-      - uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
 
       # Job for Minify-JS
       - name: HTML/CSS/JS Minifier
-        uses: devatherock/minify-js:1.0.3
+        uses: nizarmah/auto-minify@v2.1
         with:
-          directory: 'scripts/src'      # Optional
-          output: 'scripts/build'  # Optional
-          add_suffix: true     # Optional
+          overwrite: true
+          directory: 'scripts/src'
+          output: 'scripts/build'
           
       # Auto-commit to repository
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Minify-JS : Commit Pipeline'
+          commit_message: 'Minify action'
           branch: ${{ github.ref }}
