@@ -13,8 +13,8 @@ jobs:
           ref: ${{ github.ref }}
 
       # Job for Minify-JS
-       - name: HTML/CSS/JS Minifier
-        uses: docker://devatherock/minify-js:1.0.3
+      - name: HTML/CSS/JS Minifier
+        uses: devatherock/minify-js:1.0.3
         with:
           directory: 'scripts/src'      # Optional
           output: 'scripts/build'  # Optional
