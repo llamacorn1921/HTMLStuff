@@ -13,11 +13,12 @@ jobs:
           ref: ${{ github.ref }}
 
       # Job for Minify-JS
-      - name: Minify-JS Action
-        uses: jossydevers/minify-js@v1.0.0
+       - name: HTML/CSS/JS Minifier
+        uses: docker://devatherock/minify-js:1.0.3
         with:
-          directory: 'scripts/src/' # (OPTIONAL)
-          output: 'scripts/build/' # (OPTIONAL)
+          directory: 'scripts/src'      # Optional
+          output: 'scripts/build'  # Optional
+          add_suffix: true     # Optional
           
       # Auto-commit to repository
       - uses: stefanzweifel/git-auto-commit-action@v4
