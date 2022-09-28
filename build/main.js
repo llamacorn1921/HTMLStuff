@@ -1,1 +1,0 @@
-define(["jquery"],a=>{a(function(){alert("heLLO")})});
