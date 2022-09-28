@@ -24,7 +24,7 @@ const config = {
 	/** @type {UglifyJS.MangleOptions} */
 	mangle: {
 		// mangle options
-		reserved: [ ],
+		reserved: [ "requirejs", "config"],
 		properties: {
 			reserved: []
 		}
@@ -50,11 +50,17 @@ const buildProject = () => {
 		};
 
 		files.forEach((file) => {
-			fs.writeFileSync(`./build/${path.parse(file).name}.min.js`, UglifyJS.minify({
-				file: fs.readFileSync(`./src/${file}`, "utf8")
-			}, config).code, "utf8");
-			console.log(file);
+			if (file != "config.js") {
+				fs.writeFileSync(`./build/${path.parse(file).name}.min.js`, UglifyJS.minify({
+					file: fs.readFileSync(`./src/${file}`, "utf8")
+				}, config).code, "utf8");
+				console.log(file);
+			}
 		});
 	});
+	fs.writeFileSync(`./build/config.min.js`, UglifyJS.minify({
+		file: fs.readFileSync(`./src/config.js`, "utf8")
+	}).code, "utf8");
+
 }
 buildProject();
