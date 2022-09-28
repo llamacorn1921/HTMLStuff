@@ -2,6 +2,7 @@
 @echo off
 git add src/
 node build.js
+sleep 5
 git add build/
 git commit -m "source update"
 git push main main
