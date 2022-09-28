@@ -50,8 +50,11 @@ const buildProject = () => {
 		};
 
 		files.forEach((file) => {
-			let result = UglifyJS.minify(file, config);
-			fs.writeFile(`/build/${file}.min`)
-		})
-	})
+			fs.writeFileSync(`./build/${path.parse(file).name}.min.js`, UglifyJS.minify({
+				file: fs.readFileSync(`./src/${file}`, "utf8")
+			}, config).code, "utf8");
+			console.log(file);
+		});
+	});
 }
+buildProject();
